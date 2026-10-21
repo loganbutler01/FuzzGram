@@ -12,9 +12,9 @@ being rejected. This is the book's simple grammar fuzzer as a command line tool.
 You can run the program in one of these 3 ways.
 
 ```
-uv run synfuzz url
-uv run synfuzz expr -n 5 -s 42
-uv run synfuzz mygrammar.json -n 100
+uv run fuzzgram url
+uv run fuzzgram expr -n 5 -s 42
+uv run fuzzgram mygrammar.json -n 100
 ```
 
 The first argument is the grammar: a built-in name or a path to a JSON file.
@@ -58,8 +58,8 @@ the ways it can be written. Generation starts at `<start>`.
 ```
 
 ```
-uv run synfuzz greet.json --check
-uv run synfuzz greet.json -n 3
+uv run fuzzgram greet.json --check
+uv run fuzzgram greet.json -n 3
 ```
 
 - `<start>` is required, and every symbol you use must have a rule.
@@ -69,12 +69,12 @@ uv run synfuzz greet.json -n 3
 If a rule is wrong, `--check` says which one:
 
 ```
-synfuzz: invalid grammar:
+fuzzgram: invalid grammar:
   <start>: uses undefined <x>
 ```
 
 ## Feeding a program
 
 ```
-uv run synfuzz url -n 100 | while read -r line; do ./my_program "$line"; done
+uv run fuzzgram url -n 100 | while read -r line; do ./my_program "$line"; done
 ```
